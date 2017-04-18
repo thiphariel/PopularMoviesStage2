@@ -85,7 +85,7 @@ class MovieLoader extends Loader<JSONObject> {
                         mLoadingIndicator.setVisibility(View.INVISIBLE);
                         // Handle error
                         Log.e(TAG, "Error : " + error.getLocalizedMessage());
-                        Toast.makeText(mContext, "Enable to retrieve data from the API... Did you check the readme and put your API key in /res/strings.xml ?", Toast.LENGTH_LONG).show();
+                        Toast.makeText(mContext, "Enable to retrieve data from the API... Did you check the readme and put your API key in /gradle.properties file ?", Toast.LENGTH_LONG).show();
                     }
                 });
 
