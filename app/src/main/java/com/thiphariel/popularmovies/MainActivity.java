@@ -21,7 +21,10 @@ import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.thiphariel.popularmovies.adapters.MovieAdapter;
 import com.thiphariel.popularmovies.data.FavoriteContract;
+import com.thiphariel.popularmovies.data.Movie;
+import com.thiphariel.popularmovies.loaders.MovieLoader;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -34,22 +37,17 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements
         MovieAdapter.ListItemClickListener {
 
-    private final String TAG = MainActivity.class.getSimpleName();
-
     private static final int MOVIES_LOADER_ID = 0;
     private static final int FAVORITES_LOADER_ID = 1;
-
     private static final String SORT_BY = "sort_by";
-    private String mCurrentSort = "popular";
-
     private static final String RECYCLER_VIEW_STATE = "recycler_view_state";
     private static final String TMDB_CURRENT_RESPONSE = "tmdbçcurrent_response";
-    private JSONObject mResponse;
-
     private static final String TMDB_BASE_PATH = "https://api.themoviedb.org/3";
     private static final String TMDB_POPULAR_PATH = TMDB_BASE_PATH + "/movie/popular";
     private static final String TMDB_TOP_PATH = TMDB_BASE_PATH + "/movie/top_rated";
-
+    private final String TAG = MainActivity.class.getSimpleName();
+    private String mCurrentSort = "popular";
+    private JSONObject mResponse;
     private RecyclerView mRecyclerView;
     private Parcelable mRecyclerViewState;
     private MovieAdapter mMovieAdapter;

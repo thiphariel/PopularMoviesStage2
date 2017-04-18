@@ -1,4 +1,4 @@
-package com.thiphariel.popularmovies;
+package com.thiphariel.popularmovies.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -8,6 +8,15 @@ import android.os.Parcelable;
  */
 
 public class Movie implements Parcelable {
+    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
     private String id;
     private String title;
     private String release_date;
@@ -24,6 +33,16 @@ public class Movie implements Parcelable {
         this.backdrop_path = backdrop_path;
         this.vote_average = vote_average;
         this.overview = overview;
+    }
+
+    private Movie(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        release_date = in.readString();
+        poster_path = in.readString();
+        backdrop_path = in.readString();
+        vote_average = in.readFloat();
+        overview = in.readString();
     }
 
     public String getId() {
@@ -71,25 +90,5 @@ public class Movie implements Parcelable {
         out.writeString(backdrop_path);
         out.writeFloat(vote_average);
         out.writeString(overview);
-    }
-
-    public static final Parcelable.Creator<Movie> CREATOR = new Parcelable.Creator<Movie>() {
-        public Movie createFromParcel(Parcel in) {
-            return new Movie(in);
-        }
-
-        public Movie[] newArray(int size) {
-            return new Movie[size];
-        }
-    };
-
-    private Movie(Parcel in) {
-        id = in.readString();
-        title = in.readString();
-        release_date = in.readString();
-        poster_path = in.readString();
-        backdrop_path = in.readString();
-        vote_average = in.readFloat();
-        overview = in.readString();
     }
 }

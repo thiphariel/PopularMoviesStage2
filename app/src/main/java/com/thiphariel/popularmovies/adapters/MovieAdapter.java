@@ -1,4 +1,4 @@
-package com.thiphariel.popularmovies;
+package com.thiphariel.popularmovies.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+import com.thiphariel.popularmovies.R;
+import com.thiphariel.popularmovies.data.Movie;
 
 import java.util.List;
 
@@ -15,7 +17,7 @@ import java.util.List;
  * Created by Thiphariel on 30/01/2017.
  */
 
-class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
 
     private static final String TAG = MovieAdapter.class.getSimpleName();
 
@@ -24,11 +26,7 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     private Context mContext;
     private List<Movie> mMoviesList;
 
-    interface ListItemClickListener {
-        void onListItemClick(int clickedItemIndex);
-    }
-
-    MovieAdapter(List<Movie> list, Context context, ListItemClickListener listener) {
+    public MovieAdapter(List<Movie> list, Context context, ListItemClickListener listener) {
         mMoviesList = list;
         mContext = context;
         mOnClickListener = listener;
@@ -58,6 +56,10 @@ class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.MovieViewHolder> {
     @Override
     public int getItemCount() {
         return mMoviesList.size();
+    }
+
+    public interface ListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
     }
 
     class MovieViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

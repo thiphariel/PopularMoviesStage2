@@ -23,6 +23,9 @@ public class FavoriteContentProvider extends ContentProvider {
     private static final UriMatcher sUriMatcher = buildUriMatcher();
 
     // Define a static buildUriMatcher method that associates URI's with their int match
+    // Member variable for a TaskDbHelper that's initialized in the onCreate() method
+    private FavoriteDbHelper mFavoriteDbHelper;
+
     /**
      Initialize a new matcher object without any matches,
      then use .addURI(String authority, String path, int match) to add matches
@@ -41,9 +44,6 @@ public class FavoriteContentProvider extends ContentProvider {
 
         return uriMatcher;
     }
-
-    // Member variable for a TaskDbHelper that's initialized in the onCreate() method
-    private FavoriteDbHelper mFavoriteDbHelper;
 
     @Override
     public boolean onCreate() {

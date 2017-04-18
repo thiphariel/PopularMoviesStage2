@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.thiphariel.popularmovies.data.FavoriteContract;
+import com.thiphariel.popularmovies.data.Movie;
 
 public class DetailMovieActivity extends AppCompatActivity {
 

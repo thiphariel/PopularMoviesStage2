@@ -1,4 +1,4 @@
-package com.thiphariel.popularmovies;
+package com.thiphariel.popularmovies.utilities;
 
 import android.content.Context;
 
@@ -10,10 +10,10 @@ import com.android.volley.toolbox.Volley;
  * Created by Thiphariel on 31/01/2017.
  */
 
-class VolleySingleton {
+public class VolleySingleton {
     private static VolleySingleton mInstance;
-    private RequestQueue mRequestQueue;
     private static Context mContext;
+    private RequestQueue mRequestQueue;
 
     private VolleySingleton(Context context) {
         mContext = context;
