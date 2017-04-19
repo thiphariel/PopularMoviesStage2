@@ -139,7 +139,7 @@ public class FavoriteContentProvider extends ContentProvider {
                 // Get the favorite ID from the URI path
                 String id = uri.getPathSegments().get(1);
                 // Use the selections/selectionArgs to filter for this ID
-                rowsDeleted = db.delete(TABLE_NAME, "_id=?", new String[]{id});
+                rowsDeleted = db.delete(TABLE_NAME, "movie_id=?", new String[]{id});
                 break;
             // Default exception
             default:
