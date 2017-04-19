@@ -24,6 +24,7 @@ public class Movie implements Parcelable {
     private String backdrop_path;
     private float vote_average;
     private String overview;
+    private boolean favorite;
 
     public Movie(String id, String title, String release_date, String poster_path, String backdrop_path, float vote_average, String overview) {
         this.id = id;
@@ -33,6 +34,7 @@ public class Movie implements Parcelable {
         this.backdrop_path = backdrop_path;
         this.vote_average = vote_average;
         this.overview = overview;
+        this.favorite = false;
     }
 
     private Movie(Parcel in) {
@@ -43,6 +45,7 @@ public class Movie implements Parcelable {
         backdrop_path = in.readString();
         vote_average = in.readFloat();
         overview = in.readString();
+        favorite = in.readInt() == 1;
     }
 
     public String getId() {
@@ -73,6 +76,14 @@ public class Movie implements Parcelable {
         return overview;
     }
 
+    public boolean isFavorite() {
+        return favorite;
+    }
+
+    public void setFavorite(boolean fav) {
+        favorite = fav;
+    }
+
     public String toString() {
         return "Movie : \nid : " + id + "\ntitle : " + title;
     }
@@ -90,5 +101,6 @@ public class Movie implements Parcelable {
         out.writeString(backdrop_path);
         out.writeFloat(vote_average);
         out.writeString(overview);
+        out.writeInt(favorite ? 1 : 0);
     }
 }
