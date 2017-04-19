@@ -3,6 +3,7 @@ package com.thiphariel.popularmovies;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.LoaderManager;
@@ -18,11 +19,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.thiphariel.popularmovies.adapters.MovieAdapter;
 import com.thiphariel.popularmovies.data.FavoriteContract;
+import com.thiphariel.popularmovies.data.FavoriteDbHelper;
 import com.thiphariel.popularmovies.data.Movie;
 import com.thiphariel.popularmovies.loaders.MovieLoader;
 
@@ -264,6 +267,19 @@ public class MainActivity extends AppCompatActivity implements
             case R.id.menu_sort_top_rated:
                 mCurrentSort = "top_rated";
                 break;
+            // Dev only
+            case R.id.clear_db:
+                FavoriteDbHelper helper = new FavoriteDbHelper(this);
+                SQLiteDatabase db = helper.getWritableDatabase();
+                int deleted = db.delete(FavoriteContract.FavoriteEntry.TABLE_NAME, null, null);
+
+                if (deleted > 0) {
+                    Toast.makeText(this, "Database has been cleared. " + deleted + " rows deleted.", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "There is no rows in the table " + FavoriteContract.FavoriteEntry.TABLE_NAME, Toast.LENGTH_SHORT).show();
+                }
+
+                return true;
         }
 
         loadMovies();
