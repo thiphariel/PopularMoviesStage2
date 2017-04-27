@@ -21,7 +21,6 @@ public class DetailMovieActivity extends AppCompatActivity {
 
     private static final String TAG = DetailMovieActivity.class.getSimpleName();
     private Movie mMovie;
-    private Menu mMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,12 +35,6 @@ public class DetailMovieActivity extends AppCompatActivity {
 
         // Retrieve extra intent parcelable
         mMovie = getIntent().getParcelableExtra("movie");
-
-        //String movieTitle = getIntent().getStringExtra("title");
-        //String movieImage = getIntent().getStringExtra("image");
-        //String movieYear = getIntent().getStringExtra("year");
-        //float movieRating = getIntent().getFloatExtra("rating", 0);
-        //String movieOverview = getIntent().getStringExtra("overview");
 
         title.setText(mMovie.getTitle());
         year.setText(mMovie.getReleaseDate());
@@ -58,9 +51,7 @@ public class DetailMovieActivity extends AppCompatActivity {
         if (cursor != null) {
             Log.d(TAG, DatabaseUtils.dumpCursorToString(cursor));
             if (cursor.moveToNext()) {
-                String movieId = cursor.getString(cursor.getColumnIndex(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_ID));
-                String movieTitle = cursor.getString(cursor.getColumnIndex(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_TITLE));
-                Log.d(TAG, "Movie id : " + movieId + " / title : " + movieTitle);
+                Log.d(TAG, "Movie dump : " + DatabaseUtils.dumpCursorToString(cursor));
 
                 // Set as favorite
                 mMovie.setFavorite(true);
@@ -79,6 +70,11 @@ public class DetailMovieActivity extends AppCompatActivity {
         ContentValues values = new ContentValues();
         values.put(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_ID, mMovie.getId());
         values.put(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_TITLE, mMovie.getTitle());
+        values.put(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_RELEASE_DATE, mMovie.getReleaseDate());
+        values.put(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_POSTER_PATH, mMovie.getPosterPath());
+        values.put(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_BACKDROP_PATH, mMovie.getBackdropPath());
+        values.put(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_VOTE_AVERAGE, mMovie.getVoteAverage());
+        values.put(FavoriteContract.FavoriteEntry.COLUMN_MOVIE_OVERVIEW, mMovie.getOverview());
 
         Uri uri = getContentResolver().insert(FavoriteContract.FavoriteEntry.CONTENT_URI, values);
 

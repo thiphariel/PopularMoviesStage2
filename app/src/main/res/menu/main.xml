@@ -7,6 +7,9 @@
         android:id="@+id/menu_sort_top_rated"
         android:title="@string/sort_by_top_rated" />
     <item
+        android:id="@+id/menu_sort_by_favorites"
+        android:title="@string/sort_by_favorites" />
+    <item
         android:id="@+id/clear_db"
         android:title="Clear all database" />
 </menu>

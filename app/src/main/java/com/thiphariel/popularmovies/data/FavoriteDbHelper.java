@@ -27,9 +27,14 @@ public class FavoriteDbHelper extends SQLiteOpenHelper {
 
         // Create tasks table (careful to follow SQL formatting rules)
         final String CREATE_TABLE = "CREATE TABLE "  + FavoriteContract.FavoriteEntry.TABLE_NAME + " (" +
-                FavoriteContract.FavoriteEntry._ID               + " INTEGER PRIMARY KEY, " +
-                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_ID   + " TEXT NOT NULL," +
-                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_TITLE + " TEXT NOT NULL);";
+                FavoriteContract.FavoriteEntry._ID + " INTEGER PRIMARY KEY, " +
+                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_ID + " TEXT NOT NULL," +
+                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_TITLE + " TEXT NOT NULL," +
+                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_RELEASE_DATE + " TEXT NOT NULL," +
+                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_POSTER_PATH + " TEXT NOT NULL," +
+                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_BACKDROP_PATH + " TEXT NOT NULL," +
+                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_VOTE_AVERAGE + " FLOAT NOT NULL," +
+                FavoriteContract.FavoriteEntry.COLUMN_MOVIE_OVERVIEW + " TEXT NOT NULL);";
 
         db.execSQL(CREATE_TABLE);
     }

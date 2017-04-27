@@ -28,5 +28,10 @@ public class FavoriteContract {
         // "_ID" column in addition to the two below
         public static final String COLUMN_MOVIE_ID = "movie_id";
         public static final String COLUMN_MOVIE_TITLE = "movie_title";
+        public static final String COLUMN_MOVIE_RELEASE_DATE = "movie_release_date";
+        public static final String COLUMN_MOVIE_POSTER_PATH = "movie_poster_path";
+        public static final String COLUMN_MOVIE_BACKDROP_PATH = "movie_backdrop_path";
+        public static final String COLUMN_MOVIE_VOTE_AVERAGE = "movie_vote_average";
+        public static final String COLUMN_MOVIE_OVERVIEW = "movie_overview";
     }
 }
